@@ -4,8 +4,8 @@ on: push
 
 jobs:
   first_job:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Print variable
-      run: echo "${{secrets.TOKEN_SECRET}}"
+    steps:
+      - name: Print variable
+        run: echo "${{secrets.TOKEN_SECRET}}"
