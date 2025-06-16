@@ -39,13 +39,19 @@ jobs:
           path: public/
 
 
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
 
+    permissions:
+      pages: write
+      id-token: write 
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment-pages.outputs.page_url }}
+
     steps:
       - name: deploy
-        run: echo "Deploy . . ."
-
-    
+        id: deployment-pages
+        ueses: actions/deploy-pages@v4
