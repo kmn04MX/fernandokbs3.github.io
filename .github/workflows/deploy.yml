@@ -3,8 +3,14 @@ name: deploy
 on: push
 
 jobs:
+
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.is}}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [18,20]
 
     services:
       redis:
@@ -22,7 +28,7 @@ jobs:
       - name: setup
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: ${{matrix.node}}
       
       - name: Instalar dependencias
         run: npm install
